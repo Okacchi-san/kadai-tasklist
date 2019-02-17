@@ -14,7 +14,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::paginate(25);
 
         return view('tasks.index', [
             'tasks' => $tasks,
@@ -49,7 +49,7 @@ class TasksController extends Controller
         ]);
         
         $task = new Task;
-        $task->stasus = $request->stasus;    // 追加
+        $task->status = $request->status;    // 追加
         $task->content = $request->content;
         $task->save();
 
@@ -101,7 +101,7 @@ class TasksController extends Controller
         ]);
         
         $task = Task::find($id);
-        $task->stasus = $request->stasus;    // 追加
+        $task->status = $request->status;    // 追加
         $task->content = $request->content;
         $task->save();
 
